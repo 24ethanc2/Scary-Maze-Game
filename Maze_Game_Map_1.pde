@@ -1,7 +1,8 @@
 int gameScreen = 0;
-
+ int x = (int)random(2);
 void setup() {
-   size(1200, 1200);
+   fullScreen();
+
 }
 
 void draw(){
@@ -12,7 +13,14 @@ void draw(){
   if (gameScreen == 0) {
     initScreen();
   } else if (gameScreen == 1) {
-    gameScreen();
+    if(x == 0)
+    {
+      gameScreen1();
+    }
+    else if(x==1)
+    {
+     gameScreen2(); 
+    }
   } else if (gameScreen == 2) {
     gameOverScreen();
   } else if(gameScreen ==4) {
@@ -33,35 +41,61 @@ void initScreen() {
   fill(255,255,255);
   text("Scary Maze Game", height/2, width/2);
   fill(255,255,0);
-  rect(height/2-150, width/2+25,300,150);
-  textSize(32);
+  rect(350,1000,450,200);
+  textSize(56);
   fill(255,255,255);
-  text("Click Here To Start", height/2, width/2+100);
-  fill(255,255,255);
+  fill(255,0,0);
+  text("Click Here To Start", 575, 1110);
+  fill(0,0,255);
   circle(mouseX, mouseY, 10);
   
 }
 
-void gameScreen() {
+void gameScreen1() {
   // codes of game screen
   fill(255, 255,0);
   noStroke();
-  rect(height/2-300, width/2-300, 400, 900);
-  rect(300, 200, 600, 100);
+  rect(300, 300, 400, 900);
+  rect(300, 200, 900, 100);
   fill(255,0,0);
-  rect(900,200,50,100);
+  rect(1150,200,50,100);
   
   
   
   
   //cursor setup
-  fill(255,255,255);
+  fill(0,0,255);
   circle(mouseX, mouseY, 10);
   
-  //cursor detection
+  //color collision
+  
+}
+
+void gameScreen2() {
+  noStroke();
+  fill(255,255,0);
+  rect(300, 80, 200, 1200);
+  rect(500, 80, 1000, 150);
+  rect(700, 230, 100, 500);
+  rect(800, 300, 300, 50);
+  rect(1100, 300, 25, 600);
+  rect(1100, 900, 500, 25);
+  rect(1200, 230, 100, 500);
+  rect(1300, 300, 500, 50);
+  
+  fill(255,0,0);
+  rect(1600, 900, 500, 150);
+  
+  fill(0,0,255);
+  circle(mouseX, mouseY, 10);
 
 }
 
+void gameScreen3() {
+  
+  
+  
+}
 void gameOverScreen() {
   // codes for game over screen
   background(0);
@@ -78,7 +112,7 @@ void victoryScreen() {
 
 public void mousePressed() {
   // if we are on the initial screen when clicked, start the game
-  if (gameScreen==0) {
+  if (gameScreen==0&& mouseX > 350&&mouseY>1000&&mouseX<800&&mouseY<1200) {
     startGame();
   }
   if (gameScreen==1){
